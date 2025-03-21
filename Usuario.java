@@ -13,9 +13,12 @@ public class Usuario extends Persona
     private float balance;
     private ArrayList<Travel> travels;
     /**
-     * Constructor for objects of class Usuario
+     * Constructor de la clase Usuario
+     * 
+     * @param  name   nombre del usuario a crear
+     * @return     una instancia de la clase Usuario
      */
-    public Usuario(String name, String surname)
+    public Usuario(String name, String surname, EnumUsuarioRol role)
     {
         super(name, surname);
         balance = 0;
@@ -34,5 +37,26 @@ public class Usuario extends Persona
         for(Travel travel: travels) {
             travel.printDetails();
         }
+    }
+    
+    public void checkClosestVehicle() {
+        if(this.travels.isEmpty()) return;
+        
+        for(Travel travel: travels) {
+            travel.printDetails();
+        }
+    }
+    
+    public int generateReport(String vehicleId, String title, String description) {
+        System.out.println("This is not implemented!");
+        return 0;
+    }
+    
+    public String getEmail() {
+        return this.email;
+    }
+    
+    public EnumUsuarioRol getRole() {
+        return this.role;
     }
 }

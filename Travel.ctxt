@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=Travel
+comment0.text=\n\ Write\ a\ description\ of\ class\ Travel\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=origin\ destination\ travelCost
+comment1.target=Travel(java.lang.String,\ java.lang.String,\ int)
+comment2.params=
+comment2.target=void\ printDetails()
+numComments=3

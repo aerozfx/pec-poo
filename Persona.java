@@ -6,15 +6,15 @@
 public abstract class Persona
 {
     private String name;
-    private String surname;
+    private String lastName;
 
     /**
      * Constructor for objects of class Persona
      */
     public Persona(String givenName, String givenSurname)
     {
-        name = givenName;
-        surname = givenSurname;
+        this.name = givenName;
+        this.lastName = givenSurname;
     }
 
     /**
@@ -24,6 +24,16 @@ public abstract class Persona
      */
     public String getFullName()
     {
-        return name + " " + surname;
+        return this.name + " " + this.lastName;
+    }
+    
+    public String getName() 
+    {
+        return this.name;
+    }
+    
+    public String getLastName() 
+    {
+        return this.lastName;
     }
 }

@@ -5,15 +5,15 @@
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class MaintainerWorker extends Trabajador
+public class EncargadoDeMantenimiento extends Trabajador
 {
     // instance variables - replace the example below with your own
     private EnumTrabajadorRol role;
 
     /**
-     * Constructor for objects of class MaintainerWorker
+     * Constructor for objects of class EncargadoDeMantenimiento
      */
-    public MaintainerWorker(String name, String surname, EnumTrabajadorRol givenRole)
+    public EncargadoDeMantenimiento(String name, String surname, EnumTrabajadorRol givenRole)
     {
        super(name, surname);
        role = givenRole;

@@ -7,13 +7,17 @@
  */
 public abstract class Trabajador extends Persona
 {
+    private EnumTrabajadorRol role;
     /**
      * Constructor for objects of class Funcionario
      */
-    public Trabajador(String name, String surname)
+    public Trabajador(String name, String surname, EnumTrabajadorRol role)
     {
         // initialise instance variables
         super(name, surname);
+        this.role = role;
     }
-    public abstract EnumTrabajadorRol getRole();
+    public EnumTrabajadorRol getRole() {
+        return this.role;
+    }
 }

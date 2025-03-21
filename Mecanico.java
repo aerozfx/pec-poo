@@ -1,21 +1,25 @@
 
 /**
- * Write a description of class SystemAdministratorWorker here.
+ * Write a description of class MechanicWorker here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class SystemAdministratorWorker extends Trabajador
+public class Mecanico extends Trabajador
 {
     // instance variables - replace the example below with your own
     private EnumTrabajadorRol role;
 
     /**
-     * Constructor for objects of class SystemAdministratorWorker
+     * Constructor for objects of class MechanicWorker
      */
-    public SystemAdministratorWorker(String name, String surname, EnumTrabajadorRol givenRole)
+    public Mecanico(String name, String surname, EnumTrabajadorRol givenRole)
     {
        super(name, surname);
+       if(!givenRole.equals(EnumTrabajadorRol.MECHANIC))
+       {
+           throw new Error("MechanicWorker can't be instanciated as " + givenRole);
+       }
        role = givenRole;
     }
 
@@ -27,6 +31,6 @@ public class SystemAdministratorWorker extends Trabajador
      */
     public EnumTrabajadorRol getRole()
     {
-        return this.role;
+        return role;
     }
 }
