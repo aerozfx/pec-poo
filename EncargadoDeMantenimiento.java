@@ -15,8 +15,8 @@ public class EncargadoDeMantenimiento extends Trabajador
      */
     public EncargadoDeMantenimiento(String name, String surname, EnumTrabajadorRol givenRole)
     {
-       super(name, surname);
-       role = givenRole;
+       super(name, surname, EnumTrabajadorRol.MAINTAINER);
+       this.role = givenRole;
     }
 
     /**

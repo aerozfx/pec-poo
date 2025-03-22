@@ -18,10 +18,12 @@ public class Usuario extends Persona
      * @param  name   nombre del usuario a crear
      * @return     una instancia de la clase Usuario
      */
-    public Usuario(String name, String surname, EnumUsuarioRol role)
+    public Usuario(String name, String surname, String email, EnumUsuarioRol role)
     {
         super(name, surname);
         balance = 0;
+        this.email = email;
+        this.role = role;
     }
     
     public void checkAvailableVehicles() {}
@@ -47,7 +49,7 @@ public class Usuario extends Persona
         }
     }
     
-    public int generateReport(String vehicleId, String title, String description) {
+    public int generateReport(String vehiclePlate, String title, String description) {
         System.out.println("This is not implemented!");
         return 0;
     }

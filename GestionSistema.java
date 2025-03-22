@@ -11,6 +11,7 @@ public class GestionSistema
     // instance variables - replace the example below with your own
     private static HashMap<String, Usuario> users = new HashMap<String, Usuario>();
     private static HashMap<String, Vehiculo> vehicles = new HashMap<String, Vehiculo>();
+    private static HashMap<String, Trabajador> workers = new HashMap<String, Trabajador>();
     private static Random randomGenerator = new Random();
     private static float premiumFareRate = 1.0f;
     /**
@@ -19,6 +20,18 @@ public class GestionSistema
     public GestionSistema()
     {}
 
+    public static HashMap<String, Usuario> getPlatformUsers() {
+        return GestionSistema.users;
+    }
+
+    public static HashMap<String, Vehiculo> getPlatformVehicles() {
+        return GestionSistema.vehicles;
+    }
+    
+    public static HashMap<String, Trabajador> getPlatformWorkers() {
+        return GestionSistema.workers;
+    }
+    
     /**
      * Este método añade un usuario al HashMap users, cuya clave será el correo del mismo, y el valor será una instancia de la clase Usuario
      * 
@@ -30,19 +43,20 @@ public class GestionSistema
         if(GestionSistema.isUserCreated(userEmail)) {
             throw new Error(
                 "Este usuario no se puede crear. Este correo ya está registrado!" + 
-                "¡Comprueba los datos e inténtalo de nuevo!");
+                "\n¡Comprueba los datos e inténtalo de nuevo!");
         }
-        GestionSistema.users.put(userEmail, new Usuario(user.getName(), user.getLastName(), user.getRole()));
+        GestionSistema.users.put(userEmail, user);
         return 1;
     }
     
-    public static void editUser(CreatableUsuario updatedUser) {
+    public static int editUser(CreatableUsuario updatedUser) {
         String userEmail = updatedUser.getEmail();        
         if(!GestionSistema.isUserCreated(userEmail)) {
            throw new Error(
             "Este usuario no se encuentra en el sistema.");
         }
-        GestionSistema.users.replace(userEmail, updatedUser);
+        Usuario res = GestionSistema.users.replace(userEmail, updatedUser);
+        return 1;
     }
     
     public static int deleteUser(String email) {
@@ -54,16 +68,8 @@ public class GestionSistema
         return 1;
     }
     
-    private static boolean isUserCreated(String email) {
-        return GestionSistema.users.get(email) != null;
-    }
-    
-    private static boolean isVehicleRegistered(String plate) {
-        return GestionSistema.vehicles.get(plate) != null;
-    }
-    
     public static int addVehicle(String plate, Vehiculo vehicle) {
-        if(!GestionSistema.isVehicleRegistered(plate)) {
+        if(GestionSistema.isVehicleRegistered(plate)) {
             throw new Error(
             "Este vehículo ya ha sido registrado.");
         }
@@ -89,7 +95,50 @@ public class GestionSistema
         return 1;
     }
     
+    // CRUD Trabajador
+    
+    public static int addWorker(Trabajador worker) {
+        String workerFullname = worker.getFullName();
+        if(GestionSistema.isWorkerRegistered(workerFullname)) {
+            throw new Error(
+            "Este trabajador ya está registrado");
+        }
+        GestionSistema.workers.put(worker.getFullName(), worker);
+        return 1;
+    }
+    
+    public static int editWorker(Trabajador worker) {
+        String workerFullname = worker.getFullName();
+        if(GestionSistema.isWorkerRegistered(workerFullname)) {
+            throw new Error(
+            "Este trabajador ya está registrado");
+        }
+        GestionSistema.workers.replace(worker.getFullName(), worker);
+        return 1;
+    }
+    
+    public static int delete(String fullName) {
+        if(!GestionSistema.isWorkerRegistered(fullName)) {
+            throw new Error(
+            "¡Este trabajador no existe en la plataforma!");
+        }
+        GestionSistema.workers.remove(fullName);
+        return 1;
+    }
+    
     public void setPremiumUserFareRate(float rate) {
        GestionSistema.premiumFareRate = rate; 
+    }
+    
+    private static boolean isUserCreated(String email) {
+        return GestionSistema.users.get(email) != null;
+    }
+    
+    private static boolean isVehicleRegistered(String plate) {
+        return GestionSistema.vehicles.get(plate) != null;
+    }
+    
+    private static boolean isWorkerRegistered(String fullName) {
+        return GestionSistema.workers.get(fullName) != null;
     }
 }

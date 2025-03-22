@@ -15,7 +15,7 @@ public class Mecanico extends Trabajador
      */
     public Mecanico(String name, String surname, EnumTrabajadorRol givenRole)
     {
-       super(name, surname);
+       super(name, surname, EnumTrabajadorRol.MECHANIC);
        if(!givenRole.equals(EnumTrabajadorRol.MECHANIC))
        {
            throw new Error("MechanicWorker can't be instanciated as " + givenRole);

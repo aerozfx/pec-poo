@@ -7,7 +7,7 @@
  */
 public abstract class Trabajador extends Persona
 {
-    private EnumTrabajadorRol role;
+    private EnumTrabajadorRol position;
     /**
      * Constructor for objects of class Funcionario
      */
@@ -15,9 +15,9 @@ public abstract class Trabajador extends Persona
     {
         // initialise instance variables
         super(name, surname);
-        this.role = role;
+        this.position = role;
     }
     public EnumTrabajadorRol getRole() {
-        return this.role;
+        return this.position;
     }
 }

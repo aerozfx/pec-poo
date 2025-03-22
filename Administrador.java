@@ -1,4 +1,4 @@
-
+import java.util.HashMap;
 /**
  * Write a description of class SystemAdministratorWorker here.
  * 
@@ -19,6 +19,16 @@ public class Administrador extends Trabajador
        role = EnumTrabajadorRol.ADMINISTRATOR;
     }
     
+    public HashMap<String, Usuario> listUsers() {
+        return GestionSistema.getPlatformUsers();
+    }
+    
+    public HashMap<String, Vehiculo> listVehicles() {
+        return GestionSistema.getPlatformVehicles();
+    }
+
+    // CRUD Usuario
+    
     public int createUser(CreatableUsuario usuario) {
         int createdNumber = GestionSistema.addUser(usuario);
         return createdNumber;
@@ -32,6 +42,14 @@ public class Administrador extends Trabajador
     public int deleteUser(String userEmail) {
         return GestionSistema.deleteUser(userEmail);
     }
+    
+    // CRUD Trabajador
+    
+    public int createWorker(Trabajador worker) {
+        return GestionSistema.
+    }
+    
+    // CRUD Vehículo
     
     public int registerVehicle(String plate, Vehiculo vehicle) {
         return GestionSistema.addVehicle(plate,vehicle);
