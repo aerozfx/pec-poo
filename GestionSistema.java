@@ -12,13 +12,23 @@ public class GestionSistema
     private static HashMap<String, Usuario> users = new HashMap<String, Usuario>();
     private static HashMap<String, Vehiculo> vehicles = new HashMap<String, Vehiculo>();
     private static HashMap<String, Trabajador> workers = new HashMap<String, Trabajador>();
+    private static HashMap<String, IncidenciaVehiculo> vehicleReport = new HashMap<String, IncidenciaVehiculo>();
     private static Random randomGenerator = new Random();
     private static float premiumFareRate = 1.0f;
+    private static int instances = 0;
     /**
      * Constructor for objects of class GestionSistema
      */
     public GestionSistema()
-    {}
+    {
+        if (GestionSistema.instances == 1) {
+           throw new Error(
+            "Esta clase está diseñada para que sea usada solo una vez y que todos los objetos que lo necesiten, compartan la misma instancia." +
+            "\nEste patrón se conoce como Singleton."
+            );
+        }
+        GestionSistema.instances += 1;
+    }
 
     public static HashMap<String, Usuario> getPlatformUsers() {
         return GestionSistema.users;
@@ -39,34 +49,36 @@ public class GestionSistema
      * @return     1 si el usuario ha sido creado
      */
     public static int addUser(CreatableUsuario user) {
-        String userEmail = user.getEmail();
-        if(GestionSistema.isUserCreated(userEmail)) {
+        String userDni = user.getDni();
+        if(GestionSistema.isUserCreated(userDni)) {
             throw new Error(
-                "Este usuario no se puede crear. Este correo ya está registrado!" + 
+                "Este usuario no se puede crear. Este DNI ya está registrado!" + 
                 "\n¡Comprueba los datos e inténtalo de nuevo!");
         }
-        GestionSistema.users.put(userEmail, user);
+        GestionSistema.users.put(userDni, user);
         return 1;
     }
     
     public static int editUser(CreatableUsuario updatedUser) {
-        String userEmail = updatedUser.getEmail();        
-        if(!GestionSistema.isUserCreated(userEmail)) {
+        String userDni = updatedUser.getDni();        
+        if(!GestionSistema.isUserCreated(userDni)) {
            throw new Error(
             "Este usuario no se encuentra en el sistema.");
         }
-        Usuario res = GestionSistema.users.replace(userEmail, updatedUser);
+        Usuario res = GestionSistema.users.replace(userDni, updatedUser);
         return 1;
     }
     
-    public static int deleteUser(String email) {
-        if(!GestionSistema.isUserCreated(email)) {
+    public static int deleteUser(String dni) {
+        if(!GestionSistema.isUserCreated(dni)) {
            throw new Error(
             "Este usuario no se encuentra en el sistema.");
         }
-        GestionSistema.users.remove(email);
+        GestionSistema.users.remove(dni);
         return 1;
     }
+    
+    // CRUD Vehiculo
     
     public static int addVehicle(String plate, Vehiculo vehicle) {
         if(GestionSistema.isVehicleRegistered(plate)) {
@@ -98,47 +110,71 @@ public class GestionSistema
     // CRUD Trabajador
     
     public static int addWorker(Trabajador worker) {
-        String workerFullname = worker.getFullName();
-        if(GestionSistema.isWorkerRegistered(workerFullname)) {
+        String workerDni = worker.getDni();
+        if(GestionSistema.isWorkerRegistered(workerDni)) {
             throw new Error(
             "Este trabajador ya está registrado");
         }
-        GestionSistema.workers.put(worker.getFullName(), worker);
+        GestionSistema.workers.put(workerDni, worker);
         return 1;
     }
     
     public static int editWorker(Trabajador worker) {
-        String workerFullname = worker.getFullName();
-        if(GestionSistema.isWorkerRegistered(workerFullname)) {
+        String workerDni = worker.getDni();
+        if(GestionSistema.isWorkerRegistered(workerDni)) {
             throw new Error(
             "Este trabajador ya está registrado");
         }
-        GestionSistema.workers.replace(worker.getFullName(), worker);
+        GestionSistema.workers.replace(workerDni, worker);
         return 1;
     }
     
-    public static int delete(String fullName) {
-        if(!GestionSistema.isWorkerRegistered(fullName)) {
+    public static int deleteWorker(String dni) {
+        if(!GestionSistema.isWorkerRegistered(dni)) {
             throw new Error(
             "¡Este trabajador no existe en la plataforma!");
         }
-        GestionSistema.workers.remove(fullName);
+        GestionSistema.workers.remove(dni);
         return 1;
+    }
+    
+    // CRUD Incidencias
+    
+    public static int addVehicleReport(String plate, IncidenciaVehiculo report) {
+        if(!GestionSistema.isVehicleRegistered(plate)) {
+            throw new Error(
+            "Este vehículo no existe en nuestra base de datos, por lo tanto no se puede generar un reporte para el mismo");
+        }
+        
+        if(GestionSistema.isVehicleReported(plate)) {
+             throw new Error(
+            "Este vehículo ya tiene asignado un incidente y nuestros técnicos están intentando solucionarlo lo más rápido posible");
+        }
+        GestionSistema.vehicleReport.put(plate, report);
+        return 1;
+    }
+    
+    public static HashMap<String, IncidenciaVehiculo> getVehicleReports() {
+        return GestionSistema.vehicleReport;
     }
     
     public void setPremiumUserFareRate(float rate) {
        GestionSistema.premiumFareRate = rate; 
     }
     
-    private static boolean isUserCreated(String email) {
-        return GestionSistema.users.get(email) != null;
+    private static boolean isUserCreated(String dni) {
+        return GestionSistema.users.get(dni) != null;
     }
     
     private static boolean isVehicleRegistered(String plate) {
         return GestionSistema.vehicles.get(plate) != null;
     }
     
-    private static boolean isWorkerRegistered(String fullName) {
-        return GestionSistema.workers.get(fullName) != null;
+    private static boolean isVehicleReported(String plate) {
+        return GestionSistema.vehicleReport.get(plate) != null;
+    }
+
+    private static boolean isWorkerRegistered(String dni) {
+        return GestionSistema.workers.get(dni) != null;
     }
 }

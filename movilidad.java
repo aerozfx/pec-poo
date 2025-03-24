@@ -13,7 +13,11 @@ public class movilidad
      */
     public movilidad() {}
     public static void main(String args[]) {
-        Administrador admin = new Administrador("Super", "Admin");
-        admin.createUser(new CreatableUsuario("Fernando", "Mariño", "aerozedits@gmail.com", EnumUsuarioRol.REGULAR));
+        GestionSistema sistema = new GestionSistema();
+        GestionSistema sistema2 = new GestionSistema();
+        Persona adminPerson = new Persona("01231231A", "Super", "Admin");
+        Administrador admin = new Administrador(adminPerson);
+        Persona userPerson = new Persona("01231231C", "Fernando", "Mariño");
+        admin.createUser(new CreatableUsuario(userPerson, "aerozedits@gmail.com", EnumUsuarioRol.REGULAR));
     }
 }

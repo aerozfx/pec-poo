@@ -3,16 +3,18 @@
  * @author (Fernando Mariño) 
  * @version (25/02/2025)
  */
-public abstract class Persona
+public class Persona
 {
+    private String dni;
     private String name;
     private String lastName;
 
     /**
      * Constructor for objects of class Persona
      */
-    public Persona(String givenName, String givenSurname)
+    public Persona(String dni, String givenName, String givenSurname)
     {
+        this.dni = dni;
         this.name = givenName;
         this.lastName = givenSurname;
     }
@@ -27,6 +29,10 @@ public abstract class Persona
         return this.name + " " + this.lastName;
     }
     
+    public String getDni() {
+        return this.dni;
+    }
+
     public String getName() 
     {
         return this.name;

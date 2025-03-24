@@ -1,14 +1,16 @@
 #BlueJ class context
 comment0.target=Persona
 comment0.text=\n\ @author\ (Fernando\ Mari\u00F1o)\ \n\ @version\ (25/02/2025)\n
-comment1.params=givenName\ givenSurname
-comment1.target=Persona(java.lang.String,\ java.lang.String)
+comment1.params=dni\ givenName\ givenSurname
+comment1.target=Persona(java.lang.String,\ java.lang.String,\ java.lang.String)
 comment1.text=\n\ Constructor\ for\ objects\ of\ class\ Persona\n
 comment2.params=
 comment2.target=java.lang.String\ getFullName()
 comment2.text=\n\ \n\ \n\ @return\ \ \ \ \ the\ full\ name\ of\ a\ given\ person\n
 comment3.params=
-comment3.target=java.lang.String\ getName()
+comment3.target=java.lang.String\ getDni()
 comment4.params=
-comment4.target=java.lang.String\ getLastName()
-numComments=5
+comment4.target=java.lang.String\ getName()
+comment5.params=
+comment5.target=java.lang.String\ getLastName()
+numComments=6

@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 /**
  * Write a description of class MechanicWorker here.
  * 
@@ -9,28 +9,23 @@ public class Mecanico extends Trabajador
 {
     // instance variables - replace the example below with your own
     private EnumTrabajadorRol role;
-
+    private ArrayList<IncidenciaVehiculo> assignedIncidents = new ArrayList<IncidenciaVehiculo>();
     /**
      * Constructor for objects of class MechanicWorker
      */
-    public Mecanico(String name, String surname, EnumTrabajadorRol givenRole)
+    public Mecanico(Persona person)
     {
-       super(name, surname, EnumTrabajadorRol.MECHANIC);
-       if(!givenRole.equals(EnumTrabajadorRol.MECHANIC))
-       {
-           throw new Error("MechanicWorker can't be instanciated as " + givenRole);
-       }
-       role = givenRole;
+       super(person, EnumTrabajadorRol.MECHANIC);
+       this.role = EnumTrabajadorRol.MECHANIC;
     }
-
-    /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
-     */
-    public EnumTrabajadorRol getRole()
-    {
-        return role;
+    
+    public boolean assignIncident(IncidenciaVehiculo incident) {
+        return assignedIncidents.add(incident);
+    }
+    
+    public void checkAssignedIncidents() {
+        for(IncidenciaVehiculo incident : this.assignedIncidents) {
+            System.out.println(incident);
+        }
     }
 }

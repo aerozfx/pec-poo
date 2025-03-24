@@ -1,8 +1,8 @@
 #BlueJ class context
 comment0.target=Usuario
 comment0.text=\n\ Clase\ que\ instanciar\u00E1\ a\ los\ distintos\ usuarios\ de\ la\ plataforma.\n\ \n\ @author\ (Fernando\ Mari\u00F1o)\ \n\ @version\ (25/02/2025)\n
-comment1.params=name\ surname\ email\ role
-comment1.target=Usuario(java.lang.String,\ java.lang.String,\ java.lang.String,\ EnumUsuarioRol)
+comment1.params=persona\ email\ role
+comment1.target=Usuario(Persona,\ java.lang.String,\ EnumUsuarioRol)
 comment1.text=\n\ Constructor\ de\ la\ clase\ Usuario\n\ \n\ @param\ \ name\ \ \ nombre\ del\ usuario\ a\ crear\n\ @return\ \ \ \ \ una\ instancia\ de\ la\ clase\ Usuario\n
 comment2.params=
 comment2.target=void\ checkAvailableVehicles()

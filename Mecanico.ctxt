@@ -1,10 +1,11 @@
 #BlueJ class context
 comment0.target=Mecanico
 comment0.text=\n\ Write\ a\ description\ of\ class\ MechanicWorker\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
-comment1.params=name\ surname\ givenRole
-comment1.target=Mecanico(java.lang.String,\ java.lang.String,\ EnumTrabajadorRol)
+comment1.params=person
+comment1.target=Mecanico(Persona)
 comment1.text=\n\ Constructor\ for\ objects\ of\ class\ MechanicWorker\n
-comment2.params=
-comment2.target=EnumTrabajadorRol\ getRole()
-comment2.text=\n\ An\ example\ of\ a\ method\ -\ replace\ this\ comment\ with\ your\ own\n\ \n\ @param\ \ y\ \ \ a\ sample\ parameter\ for\ a\ method\n\ @return\ \ \ \ \ the\ sum\ of\ x\ and\ y\ \n
-numComments=3
+comment2.params=incident
+comment2.target=boolean\ assignIncident(IncidenciaVehiculo)
+comment3.params=
+comment3.target=void\ checkAssignedIncidents()
+numComments=4

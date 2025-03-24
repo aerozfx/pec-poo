@@ -11,8 +11,8 @@ public class CreatableUsuario extends Usuario
     private String lastName;
     private String role;
     
-    public CreatableUsuario(String name, String lastName, String email, EnumUsuarioRol role) {
-        super(name, lastName, email, role);
+    public CreatableUsuario(Persona person, String email, EnumUsuarioRol role) {
+        super(person, email, role);
     }
     
     public String getName() {

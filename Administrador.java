@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.Collection;
 /**
  * Write a description of class SystemAdministratorWorker here.
  * 
@@ -13,9 +14,9 @@ public class Administrador extends Trabajador
     /**
      * Constructor for objects of class SystemAdministratorWorker
      */
-    public Administrador(String name, String surname)
+    public Administrador(Persona person)
     {
-       super(name, surname, EnumTrabajadorRol.ADMINISTRATOR);
+       super(person, EnumTrabajadorRol.ADMINISTRATOR);
        role = EnumTrabajadorRol.ADMINISTRATOR;
     }
     
@@ -26,8 +27,20 @@ public class Administrador extends Trabajador
     public HashMap<String, Vehiculo> listVehicles() {
         return GestionSistema.getPlatformVehicles();
     }
+    
+    public HashMap<String, Trabajador> listWorkers() {
+        return GestionSistema.getPlatformWorkers();
+    }
+
+    public HashMap<String, IncidenciaVehiculo> listReports() {
+        return GestionSistema.getVehicleReports();
+    }
 
     // CRUD Usuario
+
+    public Usuario getUserById(String id) {
+        return this.listUsers().get(id);
+    }
     
     public int createUser(CreatableUsuario usuario) {
         int createdNumber = GestionSistema.addUser(usuario);
@@ -35,8 +48,7 @@ public class Administrador extends Trabajador
     }
     
     public int editUser(CreatableUsuario userUpdate) {
-        GestionSistema.editUser(userUpdate);
-        return 1;
+        return GestionSistema.editUser(userUpdate);
     }
     
     public int deleteUser(String userEmail) {
@@ -45,10 +57,22 @@ public class Administrador extends Trabajador
     
     // CRUD Trabajador
     
-    public int createWorker(Trabajador worker) {
-        return GestionSistema.
+    public Trabajador getWorkerById(String id) {
+        return this.listWorkers().get(id);
     }
     
+    public int createWorker(Trabajador worker) {
+        return GestionSistema.addWorker(worker);
+    }
+    
+    public int editWorker(Trabajador worker) {
+        return GestionSistema.editWorker(worker);
+    }
+
+    public int deleteWorker(Trabajador worker) {
+        return GestionSistema.deleteWorker(worker.getFullName());
+    }
+
     // CRUD Vehículo
     
     public int registerVehicle(String plate, Vehiculo vehicle) {
@@ -61,5 +85,28 @@ public class Administrador extends Trabajador
 
     public int deletedRegisteredVehicle(String plate, Vehiculo vehicle) {
         return GestionSistema.deleteVehicle(plate);
+    }
+    
+    // CRUD Reportes Vehiculos
+    
+    public IncidenciaVehiculo getVehicleReportByPlate(String plate) {
+        return this.listReports().get(plate);
+    }
+    
+    public boolean assignVehicleIncident(String workerId, String vehiclePlate) {
+        Mecanico workerSelected = (Mecanico)this.getWorkerById(workerId);
+        IncidenciaVehiculo vehicleIncident= this.getVehicleReportByPlate(vehiclePlate);
+        return workerSelected.assignIncident(vehicleIncident);
+    }
+    
+    // Obtener información de la plataforma
+    
+    public void getVehicleBattery() {
+        Collection<Vehiculo> platformVehicles = GestionSistema.getPlatformVehicles().values(); 
+        
+        for(Vehiculo vehicle: platformVehicles) {
+            System.out.println("Vehículo: " + vehicle + 
+            "\nBatería: " + vehicle.getBattery());
+        }
     }
 }

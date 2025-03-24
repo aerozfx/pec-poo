@@ -11,10 +11,10 @@ public abstract class Trabajador extends Persona
     /**
      * Constructor for objects of class Funcionario
      */
-    public Trabajador(String name, String surname, EnumTrabajadorRol role)
+    public Trabajador(Persona person, EnumTrabajadorRol role)
     {
         // initialise instance variables
-        super(name, surname);
+        super(person.getDni(), person.getName(), person.getLastName());
         this.position = role;
     }
     public EnumTrabajadorRol getRole() {

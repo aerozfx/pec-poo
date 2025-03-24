@@ -18,9 +18,9 @@ public class Usuario extends Persona
      * @param  name   nombre del usuario a crear
      * @return     una instancia de la clase Usuario
      */
-    public Usuario(String name, String surname, String email, EnumUsuarioRol role)
+    public Usuario(Persona persona, String email, EnumUsuarioRol role)
     {
-        super(name, surname);
+        super(persona.getDni(), persona.getName(), persona.getLastName());
         balance = 0;
         this.email = email;
         this.role = role;

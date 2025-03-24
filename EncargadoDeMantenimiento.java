@@ -13,10 +13,10 @@ public class EncargadoDeMantenimiento extends Trabajador
     /**
      * Constructor for objects of class EncargadoDeMantenimiento
      */
-    public EncargadoDeMantenimiento(String name, String surname, EnumTrabajadorRol givenRole)
+    public EncargadoDeMantenimiento(Persona person)
     {
-       super(name, surname, EnumTrabajadorRol.MAINTAINER);
-       this.role = givenRole;
+       super(person, EnumTrabajadorRol.MAINTAINER);
+       this.role = EnumTrabajadorRol.MAINTAINER;
     }
 
     /**

@@ -15,7 +15,8 @@ import java.util.HashMap;
  */
 public class AdministradorTest
 {
-    private Administrador admin = new Administrador("Admin", "Test");
+    private Persona adminUser = new Persona("01213123C", "Admin", "Test");
+    private Administrador admin = new Administrador(adminUser);
     /**
      * Default constructor for test class AdministradorTest
      */
@@ -38,25 +39,31 @@ public class AdministradorTest
     @Test
     @DisplayName("This should create a user")
     public void createUser() {
-        int res = this.admin.createUser(new CreatableUsuario("test", "user", "test@test.test", EnumUsuarioRol.REGULAR));
+        Persona testPerson = new Persona("testTEST","test", "user");
+        int res = this.admin.createUser(new CreatableUsuario(testPerson, "test@test.test", EnumUsuarioRol.REGULAR));
+        Usuario result = this.admin.getUserById("testTEST");
+        assertEquals(result.getEmail(), "test@test.test");
         assertEquals(res, 1);
     }
     
     @Test
     @DisplayName("This should edit an existing user")
     public void editUser() {
-        this.admin.createUser(new CreatableUsuario("test", "user", "test@test.test", EnumUsuarioRol.REGULAR));
-        CreatableUsuario editedUser = new CreatableUsuario("edited-test", "edited-user", "test@test.test", EnumUsuarioRol.PREMIUM);
+        Persona testPerson = new Persona("testTEST","test", "user");
+        this.admin.createUser(new CreatableUsuario(testPerson, "test@test.test", EnumUsuarioRol.REGULAR));
+        Persona editedPerson = new Persona("testTEST","edited-test", "edited-test");
+        CreatableUsuario editedUser = new CreatableUsuario(editedPerson, "test@test.test", EnumUsuarioRol.PREMIUM);
         int editedResult = this.admin.editUser(editedUser);
         HashMap<String, Usuario> users = this.admin.listUsers();
         assertEquals(editedResult, 1);
-        assertEquals(users.get("test@test.test").getRole(), EnumUsuarioRol.PREMIUM);
+        assertEquals(users.get("testTEST").getRole(), EnumUsuarioRol.PREMIUM);
     }
     
     @Test
     @DisplayName("This should throw an error when editting a non-existing user")
     public void throwErrorWhenEdittingAUserDoesNotExist() {
-        CreatableUsuario editedUser = new CreatableUsuario("edited-test", "edited-user", "non-existing@test.test", EnumUsuarioRol.PREMIUM);
+        Persona testPerson = new Persona("non-existent","test", "user");
+        CreatableUsuario editedUser = new CreatableUsuario(testPerson, "non-existing@test.test", EnumUsuarioRol.PREMIUM);
         assertThrows(Error.class, () -> {
             this.admin.editUser(editedUser);
         });
@@ -65,10 +72,11 @@ public class AdministradorTest
     @Test
     @DisplayName("This should delete a user")
     public void deleteUser() {
-        this.admin.createUser(new CreatableUsuario("test", "user", "test@test.test", EnumUsuarioRol.REGULAR));
+        Persona testPerson = new Persona("testTEST","test", "user");
+        this.admin.createUser(new CreatableUsuario(testPerson, "test@test.test", EnumUsuarioRol.REGULAR));
         HashMap<String, Usuario> users = this.admin.listUsers();
-        this.admin.deleteUser("test@test.test");
-        assertEquals(users.get("test@test.test"), null);
+        this.admin.deleteUser("testTEST");
+        assertEquals(users.get("testTEST"), null);
     }
     
     @Test
@@ -85,7 +93,18 @@ public class AdministradorTest
     @Test
     @DisplayName("This should create a maintainer worker")
     public void createMaintainer() {
-        int res = this.admin.createUser(new EncargadoDeMantenimiento("test", "user", EnumTrabajadorRol.MAINTAINER));
+        Persona testPerson = new Persona("testTEST","test", "user");
+        int res = this.admin.createWorker(new EncargadoDeMantenimiento(testPerson));
         assertEquals(res, 1);
     }
+    
+    // Tests sobre el estado del sistema
+    
+    @Test
+    @DisplayName("This should print the battery of all registered vehicles")
+    public void getVehiclesBattery() {
+        this.admin.registerVehicle("1648LTE", new Vehiculo(EnumVehiculoTipo.MOTO, "1648LTE"));
+        this.admin.getVehicleBattery();
+        
+    }    
 }
