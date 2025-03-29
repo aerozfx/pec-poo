@@ -32,6 +32,8 @@ public class AdministradorTest
     public void setUp()
     {
         this.admin.listUsers().clear();
+        this.admin.listVehicles().clear();
+        this.admin.listWorkers().clear();
     }
     
     // CRUD Usuario
@@ -97,14 +99,4 @@ public class AdministradorTest
         int res = this.admin.createWorker(new EncargadoDeMantenimiento(testPerson));
         assertEquals(res, 1);
     }
-    
-    // Tests sobre el estado del sistema
-    
-    @Test
-    @DisplayName("This should print the battery of all registered vehicles")
-    public void getVehiclesBattery() {
-        this.admin.registerVehicle("1648LTE", new Vehiculo(EnumVehiculoTipo.MOTO, "1648LTE"));
-        this.admin.getVehicleBattery();
-        
-    }    
 }

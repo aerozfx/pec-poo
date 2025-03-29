@@ -24,6 +24,7 @@ public class Mecanico extends Trabajador
     }
     
     public void checkAssignedIncidents() {
+        if(this.assignedIncidents.isEmpty()) return;
         for(IncidenciaVehiculo incident : this.assignedIncidents) {
             System.out.println(incident);
         }

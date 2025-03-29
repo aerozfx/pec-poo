@@ -21,12 +21,15 @@ public class Usuario extends Persona
     public Usuario(Persona persona, String email, EnumUsuarioRol role)
     {
         super(persona.getDni(), persona.getName(), persona.getLastName());
-        balance = 0;
+        this.balance = 0;
         this.email = email;
         this.role = role;
     }
     
-    public void checkAvailableVehicles() {}
+    public void checkAvailableVehiclesNextToUser() {
+        GestionSistema.obtenerVehiculosDeLaPlataforma();
+    }
+    
     public void rentCar() {}
     
     public void setBalance(float newBalance) {

@@ -9,31 +9,28 @@ import java.util.Collection;
 public class Administrador extends Trabajador
 {
     // instance variables - replace the example below with your own
-    private EnumTrabajadorRol role;
-
     /**
      * Constructor for objects of class SystemAdministratorWorker
      */
-    public Administrador(Persona person)
+    public Administrador(Persona persona)
     {
-       super(person, EnumTrabajadorRol.ADMINISTRATOR);
-       role = EnumTrabajadorRol.ADMINISTRATOR;
+       super(persona, EnumTrabajadorRol.ADMINISTRATOR);
     }
     
     public HashMap<String, Usuario> listUsers() {
-        return GestionSistema.getPlatformUsers();
+        return GestionSistema.obtenerUsuariosDeLaPlataforma();
     }
     
     public HashMap<String, Vehiculo> listVehicles() {
-        return GestionSistema.getPlatformVehicles();
+        return GestionSistema.obtenerVehiculosDeLaPlataforma();
     }
     
     public HashMap<String, Trabajador> listWorkers() {
-        return GestionSistema.getPlatformWorkers();
+        return GestionSistema.obtenerTrabajadoresDeLaPlataforma();
     }
 
     public HashMap<String, IncidenciaVehiculo> listReports() {
-        return GestionSistema.getVehicleReports();
+        return GestionSistema.obtenerIncidentesDeLaPlataforma();
     }
 
     // CRUD Usuario
@@ -62,11 +59,11 @@ public class Administrador extends Trabajador
     }
     
     public int createWorker(Trabajador worker) {
-        return GestionSistema.addWorker(worker);
+        return GestionSistema.agregarTrabajador(worker);
     }
     
     public int editWorker(Trabajador worker) {
-        return GestionSistema.editWorker(worker);
+        return GestionSistema.editarTrabajador(worker);
     }
 
     public int deleteWorker(Trabajador worker) {
@@ -75,16 +72,17 @@ public class Administrador extends Trabajador
 
     // CRUD Vehículo
     
-    public int registerVehicle(String plate, Vehiculo vehicle) {
-        return GestionSistema.addVehicle(plate,vehicle);
+    public int registrarVehiculo(String matricula, Vehiculo vehiculo, EstacionBase estacion) {
+        estacion.agregarVehiculo(vehiculo);
+        return GestionSistema.agregarVehiculo(matricula,vehiculo);
     }
     
-    public int editRegisteredVehicle(String plate, Vehiculo vehicle) {
-        return GestionSistema.editVehicle(plate,vehicle);
+    public int editarVehiculoRegistrado(String plate, Vehiculo vehicle) {
+        return GestionSistema.editarVehiculo(plate,vehicle);
     }
 
-    public int deletedRegisteredVehicle(String plate, Vehiculo vehicle) {
-        return GestionSistema.deleteVehicle(plate);
+    public int eliminarVehiculoRegistrado(String plate, Vehiculo vehicle) {
+        return GestionSistema.eliminarVehiculo(plate);
     }
     
     // CRUD Reportes Vehiculos
@@ -101,12 +99,11 @@ public class Administrador extends Trabajador
     
     // Obtener información de la plataforma
     
-    public void getVehicleBattery() {
-        Collection<Vehiculo> platformVehicles = GestionSistema.getPlatformVehicles().values(); 
+    public void obtenerBateriaVehiculos() {
+        Collection<Vehiculo> vehiculosDeLaPlataforma = GestionSistema.obtenerVehiculosDeLaPlataforma().values(); 
         
-        for(Vehiculo vehicle: platformVehicles) {
-            System.out.println("Vehículo: " + vehicle + 
-            "\nBatería: " + vehicle.getBattery());
+        for(Vehiculo vehicle: vehiculosDeLaPlataforma) {
+            // TODO: Implement this method
         }
     }
 }

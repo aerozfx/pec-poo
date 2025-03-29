@@ -13,8 +13,8 @@ public class movilidad
      */
     public movilidad() {}
     public static void main(String args[]) {
-        GestionSistema sistema = new GestionSistema();
-        GestionSistema sistema2 = new GestionSistema();
+        Ciudad city = new Ciudad(100);
+        GestionSistema sistema = new GestionSistema(city);
         Persona adminPerson = new Persona("01231231A", "Super", "Admin");
         Administrador admin = new Administrador(adminPerson);
         Persona userPerson = new Persona("01231231C", "Fernando", "Mariño");

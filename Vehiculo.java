@@ -7,32 +7,57 @@
  */
 public class Vehiculo
 {
-    private EnumVehiculoTipo type;
-    private String plate;
-    private float batteryLeft;
-    private boolean isRented = false;
+    private EnumVehiculoTipo tipo;
+    private String matricula;
+    private float bateriaRestante;
+    private int idEstacion;
+    private boolean estaAlquilado = false;
+    private int coordenadaX;
+    private int coordenadaY;
     /**
      * Constructor for objects of class Vehicle
      */
-    public Vehiculo(EnumVehiculoTipo vehicleType, String plate) {
-        this.type = vehicleType;
-        this.plate = plate;
-        batteryLeft = 100;
+    public Vehiculo(EnumVehiculoTipo tipoVehiculo, String matricula) {
+        this.tipo = tipoVehiculo;
+        this.matricula = matricula;
+        bateriaRestante = 100;
+        this.idEstacion = idEstacion;
     }
     
-    public float getBattery() {
-        return this.batteryLeft;
+    public float obtenerBateria() {
+        return this.bateriaRestante;
     }
 
-    public String getPlate() {
-        return this.plate;
+    public String obtenerMatricula() {
+        return this.matricula;
     }
     
-    public void setBatter(float newBattery) {
-        this.batteryLeft = newBattery;
+    public String obtenerPosicion() {
+        return this.matricula;
     }
     
-    public boolean isRented() {
-        return this.isRented;
+    public void establecerBateria(float nuevaBateria) {
+        this.bateriaRestante = nuevaBateria;
+    }
+    
+    public String obtenerLocalizacionVehiculo() {
+        return this.coordenadaX + "-" + this.coordenadaY;
+    }
+    
+    public void establecerLocalizacionVehiculo(int x, int y) {
+        this.coordenadaX = x;
+        this.coordenadaY = y;
+    }
+    
+    public void alquilarVehiculo() {
+        this.estaAlquilado = true; 
+    }
+    
+    public void finalizarAlquilerVehiculo() {
+        this.estaAlquilado = false; 
+    }
+    
+    public boolean obtenerEstado() {
+        return this.estaAlquilado;
     }
 }

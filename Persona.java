@@ -8,7 +8,8 @@ public class Persona
     private String dni;
     private String name;
     private String lastName;
-
+    private int coordinateX;
+    private int coordinateY;
     /**
      * Constructor for objects of class Persona
      */
@@ -17,6 +18,8 @@ public class Persona
         this.dni = dni;
         this.name = givenName;
         this.lastName = givenSurname;
+        this.coordinateX = 0; // TODO: Hacer coordenadas aleatorias
+        this.coordinateY = 0; // TODO: Hacer coordenadas aleatorias
     }
 
     /**
