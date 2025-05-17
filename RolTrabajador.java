@@ -5,7 +5,7 @@
  * @author (your name) 
  * @version (a version number or a date)
  */
-public enum EnumTrabajadorRol
+public enum RolTrabajador
 {
-    MECHANIC, MAINTAINER, ADMINISTRATOR 
+    MECANICO, ENCARGADO_DE_MANTENIMIENTO, ADMINISTRADOR
 }

@@ -6,43 +6,42 @@
 public class Persona
 {
     private String dni;
-    private String name;
-    private String lastName;
-    private int coordinateX;
-    private int coordinateY;
+    private String nombre;
+    private String apellido;
+    private int coordenadaX;
+    private int coordenadaY;
     /**
      * Constructor for objects of class Persona
      */
-    public Persona(String dni, String givenName, String givenSurname)
+    public Persona(String dni, String nombre, String apellido)
     {
         this.dni = dni;
-        this.name = givenName;
-        this.lastName = givenSurname;
-        this.coordinateX = 0; // TODO: Hacer coordenadas aleatorias
-        this.coordinateY = 0; // TODO: Hacer coordenadas aleatorias
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.coordenadaX = 0; // TODO: Hacer coordenadas aleatorias
+        this.coordenadaY = 0; // TODO: Hacer coordenadas aleatorias
     }
 
     /**
      * 
-     * 
-     * @return     the full name of a given person
+     * @return el nombre completo de la persona
      */
-    public String getFullName()
+    public String obtenerNombreCompleto()
     {
-        return this.name + " " + this.lastName;
+        return this.nombre + " " + this.apellido;
     }
     
-    public String getDni() {
+    public String obtenerDni() {
         return this.dni;
     }
 
-    public String getName() 
+    public String obtenerNombre() 
     {
-        return this.name;
+        return this.nombre;
     }
     
-    public String getLastName() 
+    public String obtenerApellido() 
     {
-        return this.lastName;
+        return this.apellido;
     }
 }

@@ -8,24 +8,22 @@ import java.util.ArrayList;
 public class Mecanico extends Trabajador
 {
     // instance variables - replace the example below with your own
-    private EnumTrabajadorRol role;
-    private ArrayList<IncidenciaVehiculo> assignedIncidents = new ArrayList<IncidenciaVehiculo>();
+    private ArrayList<IncidenciaVehiculo> incidentesAsignados = new ArrayList<IncidenciaVehiculo>();
     /**
      * Constructor for objects of class MechanicWorker
      */
     public Mecanico(Persona person)
     {
-       super(person, EnumTrabajadorRol.MECHANIC);
-       this.role = EnumTrabajadorRol.MECHANIC;
+       super(person, RolTrabajador.MECANICO);
     }
     
-    public boolean assignIncident(IncidenciaVehiculo incident) {
-        return assignedIncidents.add(incident);
+    public boolean asignarIncidente(IncidenciaVehiculo incident) {
+        return incidentesAsignados.add(incident);
     }
     
-    public void checkAssignedIncidents() {
-        if(this.assignedIncidents.isEmpty()) return;
-        for(IncidenciaVehiculo incident : this.assignedIncidents) {
+    public void listarIncidentesAsignados() {
+        if(this.incidentesAsignados.isEmpty()) return;
+        for(IncidenciaVehiculo incident : this.incidentesAsignados) {
             System.out.println(incident);
         }
     }

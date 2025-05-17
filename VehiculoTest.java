@@ -1,5 +1,3 @@
-
-
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -46,11 +44,11 @@ public class VehiculoTest
     @Test
     @DisplayName("Debería añadir vehículos a una estación existente")
     public void crearEstacionBase() {
-        Vehiculo vehiculo1 = new Vehiculo(EnumVehiculoTipo.BICICLETA, "matricula-test-1");
-        Vehiculo vehiculo2 = new Vehiculo(EnumVehiculoTipo.PATINETE, "matricula-test-2");
-        Vehiculo vehiculo3 = new Vehiculo(EnumVehiculoTipo.MOTO, "matricula-test-3");
-        Vehiculo vehiculo4 = new Vehiculo(EnumVehiculoTipo.PATINETE, "matricula-test-4");
-        Vehiculo vehiculo5 = new Vehiculo(EnumVehiculoTipo.BICICLETA, "matricula-test-5");
+        Vehiculo vehiculo1 = new Vehiculo(TipoVehiculo.BICICLETA, "matricula-test-1");
+        Vehiculo vehiculo2 = new Vehiculo(TipoVehiculo.PATINETE, "matricula-test-2");
+        Vehiculo vehiculo3 = new Vehiculo(TipoVehiculo.MOTO, "matricula-test-3");
+        Vehiculo vehiculo4 = new Vehiculo(TipoVehiculo.PATINETE, "matricula-test-4");
+        Vehiculo vehiculo5 = new Vehiculo(TipoVehiculo.BICICLETA, "matricula-test-5");
         estacionTest.agregarVehiculo(vehiculo1);
         estacionTest.agregarVehiculo(vehiculo2);
         estacionTest.agregarVehiculo(vehiculo3);
@@ -62,12 +60,12 @@ public class VehiculoTest
     @Test
     @DisplayName("Debería tirar error cuando se añaden más vehículos")
     public void crearMasVehiculosDeLosAceptadosPorLaEstacionBase() {
-        Vehiculo vehiculo1 = new Vehiculo(EnumVehiculoTipo.BICICLETA, "matricula-test-1");
-        Vehiculo vehiculo2 = new Vehiculo(EnumVehiculoTipo.PATINETE, "matricula-test-2");
-        Vehiculo vehiculo3 = new Vehiculo(EnumVehiculoTipo.MOTO, "matricula-test-3");
-        Vehiculo vehiculo4 = new Vehiculo(EnumVehiculoTipo.PATINETE, "matricula-test-4");
-        Vehiculo vehiculo5 = new Vehiculo(EnumVehiculoTipo.BICICLETA, "matricula-test-5");
-        Vehiculo vehiculo6 = new Vehiculo(EnumVehiculoTipo.BICICLETA, "matricula-test-6");
+        Vehiculo vehiculo1 = new Vehiculo(TipoVehiculo.BICICLETA, "matricula-test-1");
+        Vehiculo vehiculo2 = new Vehiculo(TipoVehiculo.PATINETE, "matricula-test-2");
+        Vehiculo vehiculo3 = new Vehiculo(TipoVehiculo.MOTO, "matricula-test-3");
+        Vehiculo vehiculo4 = new Vehiculo(TipoVehiculo.PATINETE, "matricula-test-4");
+        Vehiculo vehiculo5 = new Vehiculo(TipoVehiculo.BICICLETA, "matricula-test-5");
+        Vehiculo vehiculo6 = new Vehiculo(TipoVehiculo.BICICLETA, "matricula-test-6");
         estacionTest.agregarVehiculo(vehiculo1);
         estacionTest.agregarVehiculo(vehiculo2);
         estacionTest.agregarVehiculo(vehiculo3);
@@ -81,8 +79,8 @@ public class VehiculoTest
     @Test
     @DisplayName("Debería tirar error cuando se añaden más vehículos")
     public void añadirVehiculosDuplicados() {
-        Vehiculo vehiculo1 = new Vehiculo(EnumVehiculoTipo.BICICLETA, "matricula-test-1");
-        Vehiculo vehiculo2 = new Vehiculo(EnumVehiculoTipo.BICICLETA, "matricula-test-1");
+        Vehiculo vehiculo1 = new Vehiculo(TipoVehiculo.BICICLETA, "matricula-test-1");
+        Vehiculo vehiculo2 = new Vehiculo(TipoVehiculo.BICICLETA, "matricula-test-1");
         estacionTest.agregarVehiculo(vehiculo1);
         assertThrows(Error.class, () -> {
             estacionTest.agregarVehiculo(vehiculo2);

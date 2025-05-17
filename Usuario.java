@@ -7,61 +7,57 @@ import java.util.ArrayList;
  */
 public class Usuario extends Persona
 {
-    private EnumUsuarioRol role;
+    private RolUsuario rol;
     private String id;
     private String email;
-    private float balance;
-    private ArrayList<Travel> travels;
+    private float saldo;
+    private ArrayList<Viaje> viajes;
     /**
      * Constructor de la clase Usuario
      * 
      * @param  name   nombre del usuario a crear
      * @return     una instancia de la clase Usuario
      */
-    public Usuario(Persona persona, String email, EnumUsuarioRol role)
+    public Usuario(Persona persona, String email, RolUsuario rol)
     {
-        super(persona.getDni(), persona.getName(), persona.getLastName());
-        this.balance = 0;
+        super(persona.obtenerDni(), persona.obtenerNombre(), persona.obtenerApellido());
+        this.saldo = 0;
         this.email = email;
-        this.role = role;
+        this.rol = rol;
     }
     
-    public void checkAvailableVehiclesNextToUser() {
-        GestionSistema.obtenerVehiculosDeLaPlataforma();
+    public void alquilarCoche(Vehiculo vehiculo) {}
+    
+    public void establecerSaldo(float nuevoSaldo) {
+        this.saldo = nuevoSaldo;
     }
     
-    public void rentCar() {}
-    
-    public void setBalance(float newBalance) {
-        this.balance = newBalance;
-    }
-    
-    public void consultRecentTravels() {
-        if(this.travels.isEmpty()) return;
+    public void consultarViajes() {
+        if(this.viajes.isEmpty()) return;
         
-        for(Travel travel: travels) {
-            travel.printDetails();
+        for(Viaje viaje: viajes) {
+            viaje.imprimirDetalles();
         }
     }
     
-    public void checkClosestVehicle() {
-        if(this.travels.isEmpty()) return;
+    public void comprobarVehiculosCercanos() {
+        if (this.viajes.isEmpty()) return;
         
-        for(Travel travel: travels) {
-            travel.printDetails();
+        for(Viaje viaje: viajes) {
+            viaje.imprimirDetalles();
         }
     }
     
-    public int generateReport(String vehiclePlate, String title, String description) {
+    public int crearIncidente(String vehiclePlate, String title, String description) {
         System.out.println("This is not implemented!");
         return 0;
     }
     
-    public String getEmail() {
+    public String obtenerCorreo() {
         return this.email;
     }
     
-    public EnumUsuarioRol getRole() {
-        return this.role;
+    public RolUsuario obtenerRol() {
+        return this.rol;
     }
 }

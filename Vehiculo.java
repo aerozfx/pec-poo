@@ -7,7 +7,7 @@
  */
 public class Vehiculo
 {
-    private EnumVehiculoTipo tipo;
+    private TipoVehiculo tipo;
     private String matricula;
     private float bateriaRestante;
     private int idEstacion;
@@ -17,7 +17,7 @@ public class Vehiculo
     /**
      * Constructor for objects of class Vehicle
      */
-    public Vehiculo(EnumVehiculoTipo tipoVehiculo, String matricula) {
+    public Vehiculo(TipoVehiculo tipoVehiculo, String matricula) {
         this.tipo = tipoVehiculo;
         this.matricula = matricula;
         bateriaRestante = 100;

@@ -1,9 +1,9 @@
 #BlueJ class context
 comment0.target=Trabajador
 comment0.text=\n\ Esta\ es\ la\ clase\ base\ de\ Trabajador.\n\ \n\ @author\ (Fernando\ Mari\u00F1o)\ \n\ @version\ (19/03/2025)\n
-comment1.params=person\ role
-comment1.target=Trabajador(Persona,\ EnumTrabajadorRol)
+comment1.params=person\ rol
+comment1.target=Trabajador(Persona,\ RolTrabajador)
 comment1.text=\n\ Constructor\ for\ objects\ of\ class\ Funcionario\n
 comment2.params=
-comment2.target=EnumTrabajadorRol\ getRole()
+comment2.target=RolTrabajador\ obtenerRol()
 numComments=3

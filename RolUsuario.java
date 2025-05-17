@@ -5,7 +5,7 @@
  * @author (your name here)
  * @version (version number or date here)
  */
-public enum EnumUsuarioRol
+public enum RolUsuario
 {
-    REGULAR, PREMIUM
+    ESTANDAR, PREMIUM
 }
