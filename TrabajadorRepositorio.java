@@ -1,4 +1,6 @@
 import java.util.HashMap;
+import java.util.Collection;
+
 /**
  * Write a description of class TrabajadorRepositorio here.
  * 
@@ -74,6 +76,10 @@ public class TrabajadorRepositorio
     
     public void borrarTodosLosTrabajadores() {
         this.trabajadores.clear();
+    }
+    
+    public Collection<Trabajador> obtenerTrabajadores() {
+        return this.trabajadores.values();
     }
     
     private boolean existeTrabajador(String dni) {

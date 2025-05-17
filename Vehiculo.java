@@ -60,4 +60,8 @@ public class Vehiculo
     public boolean obtenerEstado() {
         return this.estaAlquilado;
     }
+    
+    public void obtenerInformacion() {
+        System.out.println("MATRICULA: " + this.obtenerMatricula() + "\n"+ this.obtenerBateria() + "\n");
+    }
 }

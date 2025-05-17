@@ -1,3 +1,4 @@
+import java.util.Collection;
 
 /**
  * Write a description of class ControladorAdministrador here.
@@ -10,13 +11,15 @@ public class ControladorAdministrador
     // instance variables - replace the example below with your own
     private UsuarioRepositorio usuarioRepositorio = null;
     private TrabajadorRepositorio trabajadorRepositorio = null;
+    private VehiculoRepositorio vehiculoRepositorio = null;
     
     /**
      * Constructor for objects of class ControladorAdministrador
      */
-    public ControladorAdministrador(Administrador administrador, UsuarioRepositorio usuarioRepositorio, TrabajadorRepositorio trabajadorRepositorio) {
+    public ControladorAdministrador(Administrador administrador, UsuarioRepositorio usuarioRepositorio, TrabajadorRepositorio trabajadorRepositorio, VehiculoRepositorio vehiculoRepositorio) {
         this.usuarioRepositorio = usuarioRepositorio;
         this.trabajadorRepositorio = trabajadorRepositorio;
+        this.vehiculoRepositorio = vehiculoRepositorio;
     }
 
     /**
@@ -42,6 +45,18 @@ public class ControladorAdministrador
     
     public Usuario obtenerUsuarioPorDni(String dni) {
         return this.usuarioRepositorio.obtenerUsuario(dni);
+    }
+    
+    public Collection<Usuario> obtenerUsuarios() {
+        return this.usuarioRepositorio.obtenerUsuarios();
+    }
+
+    public Collection<Trabajador> obtenerTrabajadores() {
+        return this.trabajadorRepositorio.obtenerTrabajadores();
+    }
+    
+    public Collection<Vehiculo> obtenerVehiculos() {
+        return this.vehiculoRepositorio.obtenerVehiculos();
     }
     
     public Trabajador crearTrabajador(Trabajador trabajador) {

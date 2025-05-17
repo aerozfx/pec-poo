@@ -16,8 +16,13 @@ public class Movilidad
         Ciudad city = new Ciudad(100);
         Persona adminPerson = new Persona("01231231A", "Super", "Admin");
         Administrador admin = new Administrador(adminPerson);
-        ControladorAdministrador controladorAdministrador = new ControladorAdministrador(admin, new UsuarioRepositorio(), new TrabajadorRepositorio());
+        UsuarioRepositorio usuarioRepositorio = new UsuarioRepositorio();
+        ControladorAdministrador controladorAdministrador = new ControladorAdministrador(admin, usuarioRepositorio, new TrabajadorRepositorio(), new VehiculoRepositorio());
+        ControladorUsuario controladorUsuario = new ControladorUsuario(usuarioRepositorio);
         Persona userPerson = new Persona("01231231C", "Fernando", "Mariño");
         controladorAdministrador.crearUsuario(new Usuario(userPerson, "aerozedits@gmail.com", RolUsuario.ESTANDAR));
+        VistaUsuario vistaUsuario = new VistaUsuario(controladorUsuario);
+        VistaSistema vistaSistema = new VistaSistema(new VistaAdministrador(controladorAdministrador), vistaUsuario);
+        vistaSistema.mostrarMenuDeInicio();
     }
 }

@@ -60,4 +60,8 @@ public class Usuario extends Persona
     public RolUsuario obtenerRol() {
         return this.rol;
     }
+    
+    public void obtenerInformacion() {
+        System.out.println("DNI: " + this.obtenerDni() + " - "+ this.obtenerNombreCompleto() + " - " + this.obtenerRol());
+    }
 }

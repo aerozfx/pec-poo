@@ -20,4 +20,8 @@ public abstract class Trabajador extends Persona
     public RolTrabajador obtenerRol() {
         return this.rol;
     }
+    
+    public void obtenerInformacion() {
+        System.out.println("DNI: " + this.obtenerDni() + "\n"+ this.obtenerNombreCompleto() + "\n" + this.obtenerRol());
+    }
 }

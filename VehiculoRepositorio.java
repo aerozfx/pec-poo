@@ -1,4 +1,6 @@
 import java.util.HashMap;
+import java.util.Collection;
+
 /**
  * Write a description of class VehiculoRepositorio here.
  * 
@@ -54,6 +56,10 @@ public class VehiculoRepositorio
         }
         this.vehiculos.put(matricula, new Vehiculo(tipo, matricula));
         return this.vehiculos.get(matricula);
+    }
+    
+    public Collection<Vehiculo> obtenerVehiculos() {
+        return this.vehiculos.values();
     }
     
     private boolean existeVehiculo(String matricula) {

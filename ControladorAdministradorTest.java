@@ -15,7 +15,7 @@ public class ControladorAdministradorTest
 {
     private Persona adminUser = new Persona("01213123C", "Admin", "Test");
     private Administrador admin = new Administrador(adminUser);
-    private ControladorAdministrador sut = new ControladorAdministrador(admin, new UsuarioRepositorio(), new TrabajadorRepositorio());
+    private ControladorAdministrador sut = new ControladorAdministrador(admin, new UsuarioRepositorio(), new TrabajadorRepositorio(), new VehiculoRepositorio());
     /**
      * Default constructor for test class AdministradorTest
      */

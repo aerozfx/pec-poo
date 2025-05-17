@@ -1,4 +1,6 @@
 import java.util.HashMap;
+import java.util.Collection;
+
 /**
  * Write a description of class UsuarioRepositorio here.
  * 
@@ -26,7 +28,7 @@ public class UsuarioRepositorio
      */
     public Usuario obtenerUsuario(String dni) {
         if (!this.existeUsuario(dni)) {
-            throw new Error("No existe el usuario con el DNI: " + dni);
+            return null;
         }
         Usuario usuarioEncontrado = this.usuarios.get(dni);
         return usuarioEncontrado;
@@ -64,6 +66,10 @@ public class UsuarioRepositorio
         this.usuarios.clear();
     }    
 
+    public Collection<Usuario> obtenerUsuarios() {
+        return this.usuarios.values();
+    }
+    
     private boolean existeUsuario(String dni) {
         Usuario usuarioEncontrado = this.usuarios.get(dni);
         return usuarioEncontrado != null;
