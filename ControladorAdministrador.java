@@ -9,24 +9,26 @@ import java.util.Collection;
 public class ControladorAdministrador
 {
     // instance variables - replace the example below with your own
-    private UsuarioRepositorio usuarioRepositorio = null;
-    private TrabajadorRepositorio trabajadorRepositorio = null;
-    private VehiculoRepositorio vehiculoRepositorio = null;
+    private UsuarioModelo usuarioModelo = null;
+    private TrabajadorModelo trabajadorModelo = null;
+    private VehiculoModelo vehiculoModelo = null;
+    private EstacionBaseModelo estacionBaseModelo = null;
     
     /**
      * Constructor for objects of class ControladorAdministrador
      */
-    public ControladorAdministrador(Administrador administrador, UsuarioRepositorio usuarioRepositorio, TrabajadorRepositorio trabajadorRepositorio, VehiculoRepositorio vehiculoRepositorio) {
-        this.usuarioRepositorio = usuarioRepositorio;
-        this.trabajadorRepositorio = trabajadorRepositorio;
-        this.vehiculoRepositorio = vehiculoRepositorio;
+    public ControladorAdministrador(Administrador administrador, UsuarioModelo usuarioModelo, TrabajadorModelo trabajadorModelo, VehiculoModelo vehiculoModelo, EstacionBaseModelo estacionBaseModelo) {
+        this.usuarioModelo = usuarioModelo;
+        this.trabajadorModelo = trabajadorModelo;
+        this.vehiculoModelo = vehiculoModelo;
+        this.estacionBaseModelo = estacionBaseModelo;
     }
 
     /**
      * Crea un usuario
      */
     public Usuario crearUsuario(Usuario usuario) {
-        return this.usuarioRepositorio.crearUsuario(usuario);
+        return this.usuarioModelo.crearUsuario(usuario);
     }
     
     /**
@@ -36,49 +38,73 @@ public class ControladorAdministrador
      * @return Usuario Usuario editado
      */
     public Usuario editarUsuario(String dni, Usuario usuario) {
-        return this.usuarioRepositorio.editarUsuario(dni, usuario);
+        return this.usuarioModelo.editarUsuario(dni, usuario);
     }
     
     public void eliminarUsuario(String dni) {
-        this.usuarioRepositorio.borrarUsuario(dni);
+        this.usuarioModelo.borrarUsuario(dni);
     }
     
     public Usuario obtenerUsuarioPorDni(String dni) {
-        return this.usuarioRepositorio.obtenerUsuario(dni);
+        return this.usuarioModelo.obtenerUsuario(dni);
     }
     
     public Collection<Usuario> obtenerUsuarios() {
-        return this.usuarioRepositorio.obtenerUsuarios();
+        return this.usuarioModelo.obtenerUsuarios();
     }
 
     public Collection<Trabajador> obtenerTrabajadores() {
-        return this.trabajadorRepositorio.obtenerTrabajadores();
+        return this.trabajadorModelo.obtenerTrabajadores();
     }
     
     public Collection<Vehiculo> obtenerVehiculos() {
-        return this.vehiculoRepositorio.obtenerVehiculos();
+        return this.vehiculoModelo.obtenerVehiculos();
     }
     
     public Trabajador crearTrabajador(Trabajador trabajador) {
-        return this.trabajadorRepositorio.crearTrabajador(trabajador);
+        return this.trabajadorModelo.crearTrabajador(trabajador);
     }
     
     public Trabajador editarTrabajador(String dni, Trabajador nuevoTrabajador) {
-        return this.trabajadorRepositorio.editarTrabajador(dni, nuevoTrabajador);
+        return this.trabajadorModelo.editarTrabajador(dni, nuevoTrabajador);
     }
     
     public void eliminarTrabajador(String dni) {
-        this.trabajadorRepositorio.borrarTrabajador(dni);
+        this.trabajadorModelo.borrarTrabajador(dni);
     }
     
     public Trabajador obtenerTrabajadorPorDni(String dni) {
-        return this.trabajadorRepositorio.obtenerTrabajador(dni);
+        return this.trabajadorModelo.obtenerTrabajador(dni);
     }
     
-    // Métodos útiles
+    public EstacionBase obtenerEstacionBase(String nombreBase) {
+        return this.estacionBaseModelo.obtenerEstacionBase(nombreBase);
+    }
+    
+    public Collection<EstacionBase> obtenerEstacionesBase() {
+        return this.estacionBaseModelo.obtenerEstacionesBase();
+    }
+    
+    public Vehiculo crearVehiculo(Vehiculo vehiculo) {
+        return this.vehiculoModelo.crearVehiculo(vehiculo.obtenerMatricula(), vehiculo.obtenerTipoVehiculo(), vehiculo.obtenerEstacionAsignada());
+    }
+    
+    public Vehiculo editarVehiculo(String matricula, Vehiculo vehiculoEditado) {
+        return this.vehiculoModelo.editarVehiculo(matricula, vehiculoEditado);
+    }
+    
+    public void eliminarVehiculo(String matricula) {
+        this.vehiculoModelo.borrarVehiculo(matricula);
+    }
+    
+    public EstacionBase crearEstacionBase(EstacionBase estacionBase) {
+         return this.estacionBaseModelo.crearEstacionBase(estacionBase);    
+    }
+    
+    // Métodos útiles para testing
     
     public void eliminarTodo() {
-        this.usuarioRepositorio.borrarTodosLosUsuarios();
-        this.trabajadorRepositorio.borrarTodosLosTrabajadores();
+        this.usuarioModelo.borrarTodosLosUsuarios();
+        this.trabajadorModelo.borrarTodosLosTrabajadores();
     }
 }

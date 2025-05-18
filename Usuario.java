@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Random;
+
 /**
  * Clase que instanciará a los distintos usuarios de la plataforma.
  * 
@@ -11,7 +13,10 @@ public class Usuario extends Persona
     private String id;
     private String email;
     private float saldo;
+    private Coordenadas coordenadas;
     private ArrayList<Viaje> viajes;
+    private Random random = new Random();
+    private int radioAreaCercana = 5;
     /**
      * Constructor de la clase Usuario
      * 
@@ -24,28 +29,29 @@ public class Usuario extends Persona
         this.saldo = 0;
         this.email = email;
         this.rol = rol;
+        this.coordenadas = new Coordenadas(random.nextInt(), random.nextInt());
     }
     
     public void alquilarCoche(Vehiculo vehiculo) {}
     
     public void establecerSaldo(float nuevoSaldo) {
+        if(nuevoSaldo < 0) {
+            System.out.println("El nuevo salario no puede ser negativo");
+            return;
+        };
         this.saldo = nuevoSaldo;
     }
     
     public void consultarViajes() {
-        if(this.viajes.isEmpty()) return;
-        
-        for(Viaje viaje: viajes) {
-            viaje.imprimirDetalles();
-        }
-    }
-    
-    public void comprobarVehiculosCercanos() {
         if (this.viajes.isEmpty()) return;
         
         for(Viaje viaje: viajes) {
             viaje.imprimirDetalles();
         }
+    }
+    
+    public Coordenadas obtenerPosicion() {
+        return this.coordenadas;
     }
     
     public int crearIncidente(String vehiclePlate, String title, String description) {
@@ -63,5 +69,9 @@ public class Usuario extends Persona
     
     public void obtenerInformacion() {
         System.out.println("DNI: " + this.obtenerDni() + " - "+ this.obtenerNombreCompleto() + " - " + this.obtenerRol());
+    }
+    
+    public int obtenerAreaCercana() {
+        return this.radioAreaCercana;
     }
 }

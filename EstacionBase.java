@@ -8,33 +8,26 @@ import java.util.HashMap;
 public class EstacionBase
 {
     // instance variables - replace the example below with your own
-    private int coordinateX;
-    private int coordinateY;
-    private String baseName;
-    private int availableChargingLots;
+    private Coordenadas coordenadas;
+    private String nombreBase;
+    private int huecosDisponibles;
     private HashMap<String, Vehiculo> vehiculosDisponibles = new HashMap<String, Vehiculo>();
     /**
      * Constructor for objects of class EstacionBase
      */
-    public EstacionBase(String baseName, int coordinateX, int coordinateY, int availableChargingLots)
+    public EstacionBase(String nombreBase, Coordenadas coordenadas, int huecosDisponibles)
     {
-        // initialise instance variables
-        this.coordinateX = coordinateX;
-        this.coordinateY = coordinateY;
-        this.availableChargingLots = availableChargingLots;
-        this.baseName = baseName;
+        this.coordenadas = coordenadas;
+        this.huecosDisponibles = huecosDisponibles;
+        this.nombreBase = nombreBase;
     }
     
-    public int getCoordinateX() {
-        return this.coordinateX;
-    }
-    
-    public int getCoordinateY() {
-        return this.coordinateY;
+    public Coordenadas obtenerPosicion() {
+        return this.coordenadas;
     }
     
     public int agregarVehiculo(Vehiculo vehiculo) {
-        if(vehiculosDisponibles.size() >= this.availableChargingLots) {
+        if(vehiculosDisponibles.size() >= this.huecosDisponibles) {
             throw new Error("Todos los huecos están asginados. Inténtalo de nuevo más tarde");
         }
         
@@ -49,7 +42,21 @@ public class EstacionBase
         return this.vehiculosDisponibles;
     }
     
+    public String obtenerNombreEstacion() {
+        return this.nombreBase;
+    }
+    
+    public int obtenerHuecosDisponibles() {
+        return this.huecosDisponibles;
+    }
+    
+    public void obtenerInformacion() {
+        System.out.println("Nombre estación: " + this.obtenerNombreEstacion() + " - Coordenadas: "+ this.obtenerPosicion() + " - Huecos disponibles: " + this.obtenerHuecosDisponibles());
+    }
+    
     public void extraerVehiculo(String matricula) {
         this.vehiculosDisponibles.remove(matricula);
     }
+    
+    
 }

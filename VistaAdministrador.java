@@ -21,6 +21,7 @@ public class VistaAdministrador
     }
 
     public void iniciarVista() {
+        this.procesoCerrado = false;
         while(!procesoCerrado) {
             this.listarOpcionesAdministrador();
             String opcion = sc.nextLine();
@@ -34,24 +35,28 @@ public class VistaAdministrador
                     this.listarVehiculos();
                     break;
                 case "3":
-                    this.log("\n¿Qué operación quieres realizar?:\n");
-                    this.gestionarOpcionesGestionUsuarios();
+                    this.log("\nEstos son los trabajadores registrados en el sistema\n");
+                    this.listarTrabajadores();
                     break;
                 case "4":
                     this.log("\n¿Qué operación quieres realizar?:\n");
-                    this.gestionarOpcionesGestionVehiculos();
+                    this.gestionarOpcionesGestionUsuarios();
                     break;
                 case "5":
                     this.log("\n¿Qué operación quieres realizar?:\n");
-                    this.gestionarOpcionesGestionTrabajador();
+                    this.gestionarOpcionesGestionVehiculos();
                     break;
                 case "6":
+                    this.log("\n¿Qué operación quieres realizar?:\n");
+                    this.gestionarOpcionesGestionTrabajador();
+                    break;
+                case "7":
                     this.log("\n¿Qué tarifa quieres modificar?:\n");
                     this.gestionarModificacionTarifas();
                     break;
-                case "7":
-                    this.log("Volver al menú anterior");
+                case "8":
                     this.procesoCerrado = true;
+                    break;
                 default:
                     this.log("Esa opción no existe!");
                     
@@ -65,11 +70,12 @@ public class VistaAdministrador
         this.log("MENÚ ADMINISTRADOR");
         this.log("1) Listar usuarios");
         this.log("2) Listar información de vehículos");
-        this.log("3) Gestión usuarios");
-        this.log("4) Gestión vehículos");
-        this.log("5) Gestión trabajadores");
-        this.log("6) Modificar tarifas");
-        this.log("7) Volver al menú anterior");
+        this.log("3) Listar trabajadores");
+        this.log("4) Gestión usuarios");
+        this.log("5) Gestión vehículos");
+        this.log("6) Gestión trabajadores");
+        this.log("7) Modificar tarifas");
+        this.log("8) Volver al menú anterior");
     }
     
     private void gestionarOpcionesGestionUsuarios() {
@@ -85,17 +91,20 @@ public class VistaAdministrador
                     this.log("Introduce los datos del nuevo usuario:\n");
                     Usuario usuarioCreado = this.obtenerDatosUsuario();
                     this.controladorAdministrador.crearUsuario(usuarioCreado);
+                    this.log("El usuario con DNI: " + usuarioCreado.obtenerDni() + " ha sido creado");
                     break;
                 case "2":
                     this.log("Introduce el DNI del usuario a editar:\n");
                     String dni = sc.nextLine();
                     Usuario usuarioEditado = this.obtenerDatosUsuario();
                     this.controladorAdministrador.editarUsuario(dni, usuarioEditado);
+                    this.log("El usuario con DNI: " + usuarioEditado.obtenerDni() + " ha sido editado");
                     break;
                 case "3":
                     this.log("Introduce el DNI del usuario a eliminar:\n");
                     String dniBorrado = sc.nextLine();
                     this.controladorAdministrador.eliminarUsuario(dniBorrado);
+                    this.log("El usuario con DNI: " + dniBorrado + " ha sido eliminado");
                     break;
                 case "4":
                     listaMostrada = true;
@@ -118,19 +127,24 @@ public class VistaAdministrador
             switch(opcion) {
                 case "1":
                     this.log("Introduce los datos del nuevo vehiculo:\n");
-                    Usuario usuarioCreado = this.obtenerDatosUsuario();
-                    this.controladorAdministrador.crearUsuario(usuarioCreado);
+                    Vehiculo vehiculoCreado = this.obtenerDatosVehiculo();
+                    this.controladorAdministrador.crearVehiculo(vehiculoCreado);
+                    this.log("El vehículo con matrícula " + vehiculoCreado.obtenerMatricula() + " ha sido creado y asignado a la base: " + vehiculoCreado.obtenerEstacionAsignada().obtenerNombreEstacion());
                     break;
                 case "2":
                     this.log("Introduce la matricula del vehiculo a editar:\n");
+                    this.listarVehiculos();
                     String dni = sc.nextLine();
-                    Usuario usuarioEditado = this.obtenerDatosUsuario();
-                    this.controladorAdministrador.editarUsuario(dni, usuarioEditado);
+                    Vehiculo vehiculoEditado = this.obtenerDatosVehiculo();
+                    this.controladorAdministrador.editarVehiculo(dni, vehiculoEditado);
+                    this.log("Vehículo con matrícula: " + vehiculoEditado.obtenerMatricula() + " ha sido actualizado!.");
                     break;
                 case "3":
-                    this.log("Introduce el DNI del usuario a eliminar:\n");
-                    String dniBorrado = sc.nextLine();
-                    this.controladorAdministrador.eliminarUsuario(dniBorrado);
+                    this.log("Introduce la matrícula del vehículo a eliminar:\n");
+                    this.listarVehiculos();
+                    String matriculaBorrada = sc.nextLine();
+                    this.controladorAdministrador.eliminarVehiculo(matriculaBorrada);
+                    this.log("Vehículo con matrícula: " + matriculaBorrada + " ha sido eliminado.");
                     break;
                 case "4":
                     mostrarLista = true;
@@ -152,19 +166,24 @@ public class VistaAdministrador
             switch(opcion) {
                 case "1":
                     this.log("Introduce los datos del nuevo trabajador:\n");
-                    Usuario usuarioCreado = this.obtenerDatosUsuario();
-                    this.controladorAdministrador.crearUsuario(usuarioCreado);
+                    Trabajador trabajadorCreado = this.obtenerDatosTrabajador();
+                    this.controladorAdministrador.crearTrabajador(trabajadorCreado);
+                    this.log("El trabajador con DNI: " + trabajadorCreado.obtenerDni() + " ha sido creado");
                     break;
                 case "2":
                     this.log("Introduce el DNI del trabajador a editar:\n");
+                    this.listarTrabajadores();
                     String dni = sc.nextLine();
                     Trabajador trabajadorEditado = this.obtenerDatosTrabajador();
                     this.controladorAdministrador.editarTrabajador(dni, trabajadorEditado);
+                    this.log("El trabajador con DNI: " + trabajadorEditado.obtenerDni() + " ha sido editado");
                     break;
                 case "3":
                     this.log("Introduce el DNI del trabajador a eliminar:\n");
+                    this.listarTrabajadores();
                     String dniBorrado = sc.nextLine();
                     this.controladorAdministrador.eliminarTrabajador (dniBorrado);
+                    this.log("El trabajador con DNI: " + dniBorrado + " ha sido eliminado");
                     break;
                 case "4":
                     mostrarLista = true;
@@ -189,14 +208,9 @@ public class VistaAdministrador
                     break;
                 case "2":
                     this.log("Introduce la nueva tarifa para bicicletas:\n");
-                    String dni = sc.nextLine();
-                    Trabajador trabajadorEditado = this.obtenerDatosTrabajador();
-                    this.controladorAdministrador.editarTrabajador(dni, trabajadorEditado);
                     break;
                 case "3":
                     this.log("Introduce la nueva tarifa para motos:\n");
-                    String dniBorrado = sc.nextLine();
-                    this.controladorAdministrador.eliminarTrabajador (dniBorrado);
                     break;
                 case "4":
                     mostrarOpciones = true;
@@ -228,6 +242,13 @@ public class VistaAdministrador
         }
     }
     
+    private void listarEstacionesBase() {
+        Collection<EstacionBase> estaciones = this.controladorAdministrador.obtenerEstacionesBase();
+        for(EstacionBase estacion: estaciones) {
+            estacion.obtenerInformacion();
+        }
+    }
+    
     private void log(String mensaje) {
         System.out.println(mensaje);
     }
@@ -252,19 +273,22 @@ public class VistaAdministrador
         String apellidoUsuario = sc.nextLine();
         this.log("DNI trabajador: ");
         String dniUsuario = sc.nextLine();
-        this.log("Rol trabajador: ");
+        this.log("Rol trabajador: \n" + "Posibles opciones; ADMINISTRADOR, MANTENIMIENTO, MECANICO");
         Trabajador trabajadorCreado = null;
         while(!rolTrabajadorValido) {
             String rolTrabajador = sc.nextLine().toUpperCase();
             switch(rolTrabajador) {
                 case "ADMINISTRADOR":
                     trabajadorCreado = new Administrador(new Persona(dniUsuario, nombreUsuario, apellidoUsuario));
+                    rolTrabajadorValido = true;
                     break;
                 case "MANTENIMIENTO":
                     trabajadorCreado = new EncargadoDeMantenimiento(new Persona(dniUsuario, nombreUsuario, apellidoUsuario));
+                    rolTrabajadorValido = true;
                     break;
                 case "MECANICO":
                     trabajadorCreado = new Mecanico(new Persona(dniUsuario, nombreUsuario, apellidoUsuario));
+                    rolTrabajadorValido = true;
                     break;
                 default:
                     this.log("Los únicos tipos aceptados son: ADMINISTRADOR, MANTENIMIENTO o MECANICO");
@@ -278,23 +302,31 @@ public class VistaAdministrador
         TipoVehiculo tipo = null;
         this.log("Matricula vehiculo: ");
         String matricula = sc.nextLine();
-        this.log("Tipo vehiculo: ");
+        this.log("Tipo vehiculo: \n" + "Posibles opciones: BICICLETA, PATINETE, MOTO");
         while(!vehiculoTipoValido) {
             String rolTrabajador = sc.nextLine().toUpperCase();
             switch(rolTrabajador) {
                 case "BICICLETA":
                     tipo = TipoVehiculo.BICICLETA;
+                    vehiculoTipoValido = true;
                     break;
                 case "PATINETE":
                     tipo = TipoVehiculo.PATINETE;
+                    vehiculoTipoValido = true;
                     break;
                 case "MOTO":
                     tipo = TipoVehiculo.MOTO;
+                    vehiculoTipoValido = true;
                     break;
                 default:
                     this.log("Los únicos tipos aceptados son: BICICLETA, PATINETE o MOTO");
             }
         }
-        return new Vehiculo(tipo, matricula);
+        this.log("Seleccione la base a la que se asignará el vehículo");
+        this.listarEstacionesBase();
+        String estacionBase = sc.nextLine();
+        EstacionBase estacionElegida = this.controladorAdministrador.obtenerEstacionBase(estacionBase);
+        return new Vehiculo(tipo, matricula, estacionElegida);
     }
+    
 }

@@ -23,6 +23,7 @@ public class VistaUsuario
     }
     
     public void iniciarVista() {
+        this.vistaCerrada = false;
         this.mostrarMensajeBienvenida();
         while(!vistaCerrada) {
             this.listarOpciones();
@@ -38,7 +39,30 @@ public class VistaUsuario
         this.log("5) Recargar saldo");
         this.log("6) Reportar incidente");
         this.log("7) Listar viajes");
-        this.log("8) ");
+        this.log("8) Volver atrás ");
+        String opcion = sc.nextLine();
+        switch(opcion) {
+            case "1":
+                this.controladorUsuario.listarVehiculosDisponibles();
+                break;
+            case "2":
+                break;
+            case "3":
+                break;
+            case "4":
+                break;
+            case "5":
+                break;
+            case "6":
+                break;
+            case "7":
+                break;
+            case "8":
+                this.vistaCerrada = true;
+                break;
+            default:
+                this.log("Esa opción no existe!");
+        }
     }
     
     private void log(String mensaje) {

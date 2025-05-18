@@ -9,7 +9,7 @@ import java.util.Collection;
  */
 public class TrabajadorRepositorio
 {
-    private HashMap<String, Trabajador> trabajadores = new HashMap<String, Trabajador>();
+    protected HashMap<String, Trabajador> trabajadores = new HashMap<String, Trabajador>();
     private TrabajadorRepositorio instance = null;
     /**
      * Constructor para los objetos de TrabajadorRepositorio

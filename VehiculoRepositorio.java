@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.Collection;
+import java.util.ArrayList;
 
 /**
  * Write a description of class VehiculoRepositorio here.
@@ -9,7 +10,7 @@ import java.util.Collection;
  */
 public class VehiculoRepositorio
 {
-    private HashMap<String, Vehiculo> vehiculos = new HashMap<String, Vehiculo>();
+    protected HashMap<String, Vehiculo> vehiculos = new HashMap<String, Vehiculo>();
     private VehiculoRepositorio instance = null;
     /**
      * Constructor para los objetos de VehiculoRepositorio
@@ -50,11 +51,11 @@ public class VehiculoRepositorio
         this.vehiculos.remove(matricula);
     }
     
-    public Vehiculo crearVehiculo(String matricula, TipoVehiculo tipo) {
+    public Vehiculo crearVehiculo(String matricula, TipoVehiculo tipo, EstacionBase estacionBase) {
         if(this.existeVehiculo(matricula)) {
             throw new Error("El matricula " + matricula + " ya está registrado, por favor, inténtalo con otro.");
         }
-        this.vehiculos.put(matricula, new Vehiculo(tipo, matricula));
+        this.vehiculos.put(matricula, new Vehiculo(tipo, matricula, estacionBase));
         return this.vehiculos.get(matricula);
     }
     

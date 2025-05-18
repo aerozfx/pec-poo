@@ -11,17 +11,21 @@ public class Vehiculo
     private String matricula;
     private float bateriaRestante;
     private int idEstacion;
-    private boolean estaAlquilado = false;
-    private int coordenadaX;
-    private int coordenadaY;
+    private boolean estaDisponible = false;
+    private Coordenadas coordenadas;
+    private EstacionBase estacionBase = null;
     /**
      * Constructor for objects of class Vehicle
      */
-    public Vehiculo(TipoVehiculo tipoVehiculo, String matricula) {
+    public Vehiculo(TipoVehiculo tipoVehiculo, String matricula, EstacionBase estacionBase) {
         this.tipo = tipoVehiculo;
         this.matricula = matricula;
+        this.estacionBase = estacionBase;
+        this.estaDisponible = true;
         bateriaRestante = 100;
         this.idEstacion = idEstacion;
+        Coordenadas coordenadasEstacionAsignada = estacionBase.obtenerPosicion();
+        this.coordenadas = new Coordenadas(coordenadasEstacionAsignada.obtenerCoordenadaX(), coordenadasEstacionAsignada.obtenerCoordenadaY());
     }
     
     public float obtenerBateria() {
@@ -32,6 +36,10 @@ public class Vehiculo
         return this.matricula;
     }
     
+    public TipoVehiculo obtenerTipoVehiculo() {
+        return this.tipo;
+    }
+    
     public String obtenerPosicion() {
         return this.matricula;
     }
@@ -40,28 +48,32 @@ public class Vehiculo
         this.bateriaRestante = nuevaBateria;
     }
     
-    public String obtenerLocalizacionVehiculo() {
-        return this.coordenadaX + "-" + this.coordenadaY;
+    public Coordenadas obtenerLocalizacionVehiculo() {
+        return this.coordenadas;
     }
     
-    public void establecerLocalizacionVehiculo(int x, int y) {
-        this.coordenadaX = x;
-        this.coordenadaY = y;
+    public EstacionBase obtenerEstacionAsignada() {
+        return this.estacionBase;
+    }
+    
+    public void establecerLocalizacionVehiculo(int posicionX, int posicionY) {
+        this.coordenadas.establecerCoordenadas(new Coordenadas(posicionX, posicionY));
     }
     
     public void alquilarVehiculo() {
-        this.estaAlquilado = true; 
+        this.estaDisponible = true; 
     }
     
     public void finalizarAlquilerVehiculo() {
-        this.estaAlquilado = false; 
+        this.estaDisponible = false; 
     }
     
-    public boolean obtenerEstado() {
-        return this.estaAlquilado;
+    public boolean estaDisponible() {
+        return this.estaDisponible;
     }
     
     public void obtenerInformacion() {
-        System.out.println("MATRICULA: " + this.obtenerMatricula() + "\n"+ this.obtenerBateria() + "\n");
+        String estado = this.estaDisponible() ? "Disponible" : "Alquilado";
+        System.out.println("MATRICULA: " + this.obtenerMatricula() + " - BATERÍA: "+ this.obtenerBateria() + " - ESTADO: " + estado);
     }
 }
